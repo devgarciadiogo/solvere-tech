@@ -3,17 +3,22 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput, Image, TouchableOpacity } from 'react-native';
 
 export default function Login({ navigation }) {
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerShown: false, // Esconde o cabeçalho da tela
+    });
+  }, [navigation]);
+ 
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
   return (
     <View style={styles.container}>
-      <Text style={styles.display}>Solvere Tech</Text>
 
       <Image
         style={styles.imagem}
         resizeMode='stretch'
-        source={require('./imagens/modelo-de-vetor-de-design-de-logotipo-de-entrega-expressa_441059-205.png')}
+        source={require('./imagens/SOLVERE TECH.png')}
       />
 
       <Text style={styles.display1}>Faça seu Login!</Text>
@@ -53,6 +58,8 @@ export default function Login({ navigation }) {
         <Text style={styles.loginButtonText}>Logar</Text>
       </TouchableOpacity>
 
+      <Text style = {styles.copy}> © 2024 Solvere Tech. Todos os direitos reservados. </Text>
+
       <StatusBar style="auto" />
     </View>
   );
@@ -61,78 +68,109 @@ export default function Login({ navigation }) {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#FF4500', //Altera a cor do background
-    },
-    display: {
-      margin: 5, //Margem superior do texto
-      marginleft: 20, //Margem esquerda do texto
-      fontSize: 20, //Tamanho da fonte
-      textAlign: 'center', //Centraliza o texto
+      backgroundColor: '#C40C0C', //Altera a cor do background
+      marginTop: 20,
     },
     display1: {//Segunda linha de texto
       marginleft: 60, //Margem esquerda do texto
-      fontSize: 18,
+      marginVertical: 20, // Adiciona mais espaço acima e abaixo do texto
+      fontSize: 25,
       textAlign: 'center', //Centraliza o texto
     },
     display2: { //Label para email
       margin: 5,
-      marginLeft: 10, //Margem esquerda do texto
-      fontSize: 18,
+      marginLeft: 20, //Margem esquerda do texto
+      fontSize: 22,
     },
     display3: { //Label para senha
       margin: 5,
       marginLeft: 10, //Margem esquerda do texto
-      fontSize: 18,
+      fontSize: 22,
     },
     email: { //Caixa de texto para email
+      marginVertical: 10,
       marginTop: 2, //Margem da caixa de entrada para o label email
-      width: 370,  //Largura da caixa de entrada 
-      height: 20, //Altura da caixa de entrada
+      width: 350,  //Largura da caixa de entrada 
+      height: 40, //Altura da caixa de entrada
       backgroundColor: '#FFF',
       borderEndWidth: 1,
-      marginLeft: 10, //Margem esquerda do texto
+      marginLeft: 20, //Margem esquerda do texto
       padding: 2, //Espaço para a entrada de dados e a borda
+      paddingLeft: 10,
       placeholderTextColor: 'rgba(0, 0, 0, 0.5)',
+      shadowColor: "#000",
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+      elevation: 5,
+      borderColor: '#000', // Cor da borda
+      borderWidth: 1, // Largura da borda
     },
     senha: { //Caixa de texto para senha
+      marginVertical: 10,
       backgroundColor: '#FFF',
+      height: 40,
       borderEndWidth: 1,
-      marginLeft: 10, //Margem esquerda do texto
+      marginLeft: 20, //Margem esquerda do texto
       marginTop: 2, //Margem da primeira caixa de entrada para segunda
       padding: 2, //Espaço entra a entrada de dados e a borda
-      width: 370, //Aumente a largura da caixa de entrada
+      paddingLeft: 10,
+      width: 350, //Aumente a largura da caixa de entrada
       placeholderTextColor: 'rgba(0, 0, 0, 0.5)',
+      shadowColor: "#000",
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+      elevation: 5,
+      borderColor: '#000', // Cor da borda
+      borderWidth: 1, // Largura da borda
     },
     imagem: { // Configurações para a imagem
-      width: 170, //Largura
+      width: 200, //Largura
       height: 200, //Altura
+      marginVertical: 20,
       marginTop: 5, //Margem da figura no topo para elemento anterior, caixa de entrada
-      alignSelf: 'Center'
+      alignSelf: 'center',
+      marginleft: -10,
     },
     loginButton: {
-      backgroundColor: '#32CD32',
+      backgroundColor: '#FFC100',
       borderColor: '#000000', // Cor da borda
       borderWidth: 1, // Largura da borda
-      padding: 10,
-      borderRadius: 5,
+      padding: 15,
+      borderRadius: 8,
       alignItems: 'center',
+      marginVertical: 20,
       marginTop: 20,
-      width: 100,
+      width: 200,
       alignSelf: 'center',
+      shadowColor: "#000",
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+      elevation: 5,
+      borderColor: '#000', // Cor da borda
+      borderWidth: 1, // Largura da borda
     },
     loginButtonText: {
       color: '#000',
       fontSize: 16,
     },  
     cadastroText: {
-      color: '#FFF', // Cor do texto
+      color: '#fff', // Cor do texto
       fontSize: 14,
       textAlign: 'center',
       marginVertical: 10, // Margem vertical para espaçamento
+    },
+    copy:{
+      marginVertical:30,
+      textAlign: 'center',
+      marginTop: 180,
+      fontSize: 15,
     },
     text:{
       margin: 5,
       marginBottom: 20,
       fontSize: 14,
-    }
+    },
   });

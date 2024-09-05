@@ -32,7 +32,7 @@ const Cadastro = ({ navigation }) => {
                 style={styles.input}
                 value={nome}
                 onChangeText={setNome}
-                placeholder='Digite seu nome completo'
+                placeholder='Digite seu nome completo!'
             />
 
             <Text style={styles.label}>Telefone</Text>
@@ -41,7 +41,7 @@ const Cadastro = ({ navigation }) => {
                 value={telefone}
                 onChangeText={setTelefone}
                 keyboardType='phone-pad'
-                placeholder='Digite seu telefone'
+                placeholder='Digite seu telefone!'
             />
 
             <Text style={styles.label}>Email</Text>
@@ -50,7 +50,7 @@ const Cadastro = ({ navigation }) => {
                 value={email}
                 onChangeText={setEmail}
                 keyboardType='email-address'
-                placeholder='Insira seu email aqui!'
+                placeholder='Digite seu email aqui!'
             />
 
             <Text style={styles.label}>Senha</Text>
@@ -59,7 +59,7 @@ const Cadastro = ({ navigation }) => {
                 value={senha}
                 onChangeText={setSenha}
                 secureTextEntry={true}
-                placeholder='Insira sua senha aqui!'
+                placeholder='Digite sua senha aqui!'
             />
             <TouchableOpacity
                 style={styles.loginButton}

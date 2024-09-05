@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     },
     display3: { //Label para senha
       margin: 5,
-      marginLeft: 10, //Margem esquerda do texto
+      marginLeft: 20, //Margem esquerda do texto
       fontSize: 22,
     },
     email: { //Caixa de texto para email

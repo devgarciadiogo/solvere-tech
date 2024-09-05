@@ -32,7 +32,7 @@ const Cadastro = ({ navigation }) => {
                 style={styles.input}
                 value={nome}
                 onChangeText={setNome}
-                placeholder='Digite seu nome completo!'
+                placeholder='Digite seu nome completo aqui!'
             />
 
             <Text style={styles.label}>Telefone</Text>
@@ -41,7 +41,7 @@ const Cadastro = ({ navigation }) => {
                 value={telefone}
                 onChangeText={setTelefone}
                 keyboardType='phone-pad'
-                placeholder='Digite seu telefone!'
+                placeholder='Digite seu telefone aqui!'
             />
 
             <Text style={styles.label}>Email</Text>

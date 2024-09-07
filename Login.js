@@ -50,13 +50,13 @@ export default function Login({ navigation }) {
 
       <TouchableOpacity
         style={styles.loginButton}
-        onPress={() => {
-          // Lógica para lidar com o login
-          console.log('Botão Logar pressionado');
-        }}
+        onPress={() => navigation.navigate('Cardapio')} // Navega para a tela de cardápio
       >
         <Text style={styles.loginButtonText}>Logar</Text>
       </TouchableOpacity>
+
+      
+      
 
       <Text style = {styles.copy}> © 2024 Solvere Tech. Todos os direitos reservados. </Text>
 

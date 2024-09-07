@@ -78,7 +78,7 @@ const Cadastro = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#C40C0C', // Altera a cor do background
+        backgroundColor: '#FFA27F', // Altera a cor do background
         padding: 10,
     },
     display1: {

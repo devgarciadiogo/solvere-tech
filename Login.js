@@ -18,7 +18,7 @@ export default function Login({ navigation }) {
       <Image
         style={styles.imagem}
         resizeMode='stretch'
-        source={require('./imagens/SOLVERE TECH.png')}
+        source={require('./imagens/Logotipo.png')}
       />
 
       <Text style={styles.display1}>Faça seu Login!</Text>
@@ -68,7 +68,7 @@ export default function Login({ navigation }) {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#C40C0C', //Altera a cor do background
+      backgroundColor: '#FFA27F', //Altera a cor do background
       marginTop: 20,
     },
     display1: {//Segunda linha de texto
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
       shadowOpacity: 0.25,
       shadowRadius: 3.84,
       elevation: 5,
-      borderColor: '#000', // Cor da borda
+      borderColor: '#FF0000', // Cor da borda
       borderWidth: 1, // Largura da borda
     },
     senha: { //Caixa de texto para senha
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
       shadowOpacity: 0.25,
       shadowRadius: 3.84,
       elevation: 5,
-      borderColor: '#000', // Cor da borda
+      borderColor: '#FF0000', // Cor da borda
       borderWidth: 1, // Largura da borda
     },
     imagem: { // Configurações para a imagem
@@ -134,8 +134,8 @@ const styles = StyleSheet.create({
       marginleft: -10,
     },
     loginButton: {
-      backgroundColor: '#FFC100',
-      borderColor: '#000000', // Cor da borda
+      backgroundColor: '#FF6969',
+      
       borderWidth: 1, // Largura da borda
       padding: 15,
       borderRadius: 8,
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
       shadowOpacity: 0.25,
       shadowRadius: 3.84,
       elevation: 5,
-      borderColor: '#000', // Cor da borda
+      borderColor: '#FF0000', // Cor da borda
       borderWidth: 1, // Largura da borda
     },
     loginButtonText: {

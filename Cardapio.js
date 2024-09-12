@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { View, TextInput, Button, StyleSheet, Text, TouchableOpacity, FlatList } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -14,42 +14,84 @@ const Cardapio = ({ navigation }) => {
     }, [navigation]);
 
 
-return (
+    return (
 
-    <View style={styles.container}>
-         <Text style={styles.display1}>Cardápio</Text>
-        <TouchableOpacity>
-         <Text style={styles.adicionarButtonText}>+</Text>
-         <Text style={styles.item1}>Soupe à l'Oignon (Sopa de cebola gratinada)</Text>
-        </TouchableOpacity>
-        
-        <TouchableOpacity>
-         <Text style={styles.adicionarButtonText}>+</Text>
-         <Text style={styles.item2}>Salade de Chèvre Chaud (Salada com queijo de cabra quente)</Text>
-        </TouchableOpacity>
+        <View style={styles.container}>
+            
+            <TouchableOpacity style={styles.itemContainer}>
+                <Image
+                    style={styles.itemImage}
+                    source={require('./imagens/soupe.jpg')} // Substitua com a imagem desejada
+                />
+                <View style={styles.itemTextContainer}>
+                    <View style={styles.textAndPrice}>   
+                        <Text style={styles.itemText}>Soupe à l'Oignon (Sopa de cebola gratinada)</Text>
+                        <Text style={styles.itemPrice}>R$ 55,00</Text>
+                    </View>
+                    <Text style={styles.adicionarButtonText}>+</Text>
+                </View>
+            </TouchableOpacity>
+            
+            <TouchableOpacity style={styles.itemContainer}>
+                <Image
+                    style={styles.itemImage}
+                    source={require('./imagens/salad.jpg')} // Substitua com a imagem desejada
+                />
+                <View style={styles.itemTextContainer}>
+                    <View style={styles.textAndPrice}>      
+                        <Text style={styles.itemText}>Salade de Chèvre Chaud (Salada com queijo de cabra quente)</Text>
+                        <Text style={styles.itemPrice}>R$ 38,00</Text>
+                    </View>
+                    <Text style={styles.adicionarButtonText}>+</Text>
+                </View>
+            </TouchableOpacity>
 
-        <TouchableOpacity>
-         <Text style={styles.adicionarButtonText}>+</Text>
-         <Text style={styles.item3}>Coq au Vin (Frango cozido no vinho tinto com cogumelos e bacon)</Text>
-        </TouchableOpacity>
+            <TouchableOpacity style={styles.itemContainer}>
+                <Image
+                    style={styles.itemImage}
+                    source={require('./imagens/couq.jpg')} // Substitua com a imagem desejada
+                />
+                <View style={styles.itemTextContainer}>
+                    <View style={styles.textAndPrice}>      
+                        <Text style={styles.itemText}>Coq au Vin (Frango cozido no vinho tinto com cogumelos e bacon)</Text>
+                        <Text style={styles.itemPrice}>R$ 74,00</Text>
+                    </View>
+                    <Text style={styles.adicionarButtonText}>+</Text>
+                </View>
+            </TouchableOpacity>
 
-        <TouchableOpacity>
-         <Text style={styles.adicionarButtonText}>+</Text>
-         <Text style={styles.item4}>Steak Frites (Bife grelhado com batatas fritas)</Text>
-        </TouchableOpacity>
+            <TouchableOpacity style={styles.itemContainer}>
+                <Image
+                    style={styles.itemImage}
+                    source={require('./imagens/steakfrites.jpg')} // Substitua com a imagem desejada
+                />
+                <View style={styles.itemTextContainer}>
+                    <View style={styles.textAndPrice}>   
+                        <Text style={styles.itemText}>Steak Frites (Bife grelhado com batatas fritas)</Text>
+                        <Text style={styles.itemPrice}>R$ 81,90</Text>
+                    </View>
+                    <Text style={styles.adicionarButtonText}>+</Text>
+                </View>
+            </TouchableOpacity>
 
-        <TouchableOpacity>
-         <Text style={styles.adicionarButtonText}>+</Text>
-         <Text style={styles.item5}>Confit de Canard (Pato confitado com batatas salteadas)</Text>
-        </TouchableOpacity>
+            <TouchableOpacity style={styles.itemContainer}>
+                <Image
+                    style={styles.itemImage}
+                    source={require('./imagens/canard.jpg')} // Substitua com a imagem desejada
+                />
+                <View style={styles.itemTextContainer}>
+                    <View style={styles.textAndPrice}> 
+                        <Text style={styles.itemText}>Confit de Canard (Pato confitado com batatas salteadas)</Text>
+                        <Text style={styles.itemPrice}>R$ 120,00</Text>
+                    </View>
+                    <Text style={styles.adicionarButtonText}>+</Text>
+                </View>
+            </TouchableOpacity>
 
-    <StatusBar style="auto" />
-    </View>
+            <StatusBar style="auto" />
+        </View>
 
-    
-
-
-);
+    );
 }
 
 const styles = StyleSheet.create({
@@ -57,65 +99,58 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#FFA27F', // Altera a cor do background
         padding: 10,
+        alignItems:'center',
     },
-    display1: {
-        marginLeft: 10, // Margem esquerda do texto
-        marginVertical: 25,
-        fontSize: 50,
-        textAlign: 'center', // Centraliza o texto
-        color: '#000', // Cor do texto
-    },
-    label: {
-        marginVertical: 10,
-        marginLeft: 15,
-        fontSize: 18,
-        color: '#000', // Cor do texto
-    },
-    input: {
-        marginVertical: 10,
-        marginTop: 2,
-        backgroundColor: '#fff',
-        height: 40,
-        borderWidth: 1,
-        borderColor: '#000', // Cor da borda
-        borderRadius: 4,
-        marginLeft: 15, // Margem esquerda
-        padding: 2, // Espaço interno
-        paddingLeft: 10,
-        width: 350,
-        placeholderTextColor: 'rgba(0, 0, 0, 0.5)',
-        shadowColor: "#000",
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5,
-    },
-    adicionarButtonTextButton: {
-        backgroundColor: '#FFC100', // Cor do botão
-        borderColor: '#000000', // Cor da borda
-        borderWidth: 1, // Largura da borda
-        padding: 15,
-        borderRadius: 8,
+    itemContainer:{
+        flexDirection: 'row',
         alignItems: 'center',
-        marginVertical: 20,
-        width: 200,
-        alignSelf: 'center',
-        shadowColor: "#000",
-        shadowOffset: { width: 0, height: 2 },
+        backgroundColor: '#FFF',
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: '#FF0000', // Cor da borda
+        padding: 10,
+        marginVertical: 10,
+        width: '100%', // Ajusta o tamanho dos itens
+        maxWidth: 350, // Define uma largura máxima 
+        shadowColor: '#000',
+        shadowOffSet:{width: 0, height: 2},
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
         elevation: 5,
+    },
+    itemImage:{
+        width: 70,
+        height: 70,
+        borderRadius: 30,
+        marginRight: 10,
+    },
+    itemTextContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        flex: 1,
+        justifyContent: 'space-between',
+    },
+    textAndPrice: {
+        flexDirection: 'row',
+        alignItens: 'center',
+        flex: 1,
+        justifyContent: 'space-between',
     },
     adicionarButtonText: {
-        color: '#000',
+        fontSize: 28,
+        marginRight: 15,
+        color: '#FF0000',
+    },
+    itemText: {
         fontSize: 16,
+        color: '#333',
+        flex: 1, // Faz o texto ocupar o espaço restante
     },
-    copy:{
-        marginVertical:30,
-        textAlign: 'center',
-        marginTop: 180,
-        fontSize: 15,
-    },
+    itemPrice:{
+        fontSize: 16,
+        color: 'FF6347',
+        marginLeft: 10,
+    }
 });
 
 export default Cardapio;

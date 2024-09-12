@@ -3,6 +3,8 @@ import { StatusBar } from 'expo-status-bar';
 import { View, TextInput, Button, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { Image } from 'react-native';
+
 
 const Stack = createStackNavigator();
 
@@ -65,8 +67,14 @@ const Cadastro = ({ navigation }) => {
                 style={styles.loginButton}
                 onPress={handleGravar}
             >
-                <Text style={styles.loginButtonText}>Gravar</Text>
+                <Text style={styles.loginButtonText}>Enviar</Text>
             </TouchableOpacity>
+
+            <Image
+                style={styles.imagemLogo}
+                resizeMode='stretch'
+                source={require('./imagens/SOLVERE TECH.png')}
+            />
 
             
             <Text style = {styles.copy}> © 2024 Solvere Tech. Todos os direitos reservados.</Text>
@@ -80,6 +88,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#FFA27F', // Altera a cor do background
         padding: 10,
+        justifyContent: 'space-between',
     },
     display1: {
         marginLeft: 10, // Margem esquerda do texto
@@ -91,16 +100,15 @@ const styles = StyleSheet.create({
     label: {
         marginVertical: 10,
         marginLeft: 15,
-        fontSize: 18,
+        fontSize: 22,
         color: '#000', // Cor do texto
     },
     input: {
         marginVertical: 10,
         marginTop: 2,
-        backgroundColor: '#fff',
+        backgroundColor: '#FFF',
         height: 40,
         borderWidth: 1,
-        borderColor: '#000', // Cor da borda
         borderRadius: 4,
         marginLeft: 15, // Margem esquerda
         padding: 2, // Espaço interno
@@ -112,13 +120,16 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
         elevation: 5,
+        borderColor: '#FF0000',
+        borderWidth: 1,
     },
     loginButton: {
-        backgroundColor: '#FFC100', // Cor do botão
+        backgroundColor: '#FF6969', // Cor do botão
         borderColor: '#000000', // Cor da borda
         borderWidth: 1, // Largura da borda
         padding: 15,
         borderRadius: 8,
+        marginTop: 20,
         alignItems: 'center',
         marginVertical: 20,
         width: 200,
@@ -128,15 +139,23 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
         elevation: 5,
+        borderColor: '#FF0000',
+        borderWidth: 1,
     },
     loginButtonText: {
         color: '#000',
         fontSize: 16,
     },
+    imagemLogo:{
+        width: 90, //Largura
+        height: 90, //Altura
+        marginVertical: 20,
+        marginTop: 30, //Margem da figura no topo para elemento anterior, caixa de entrada
+        alignSelf: 'center',
+    },
     copy:{
-        marginVertical:30,
+        marginVertical:20,
         textAlign: 'center',
-        marginTop: 180,
         fontSize: 15,
     },
 });

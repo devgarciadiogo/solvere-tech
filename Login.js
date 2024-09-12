@@ -56,7 +56,11 @@ export default function Login({ navigation }) {
       </TouchableOpacity>
 
       
-      
+      <Image
+        style={styles.imagemLogo}
+        resizeMode='stretch'
+        source={require('./imagens/SOLVERE TECH.png')}
+      />
 
       <Text style = {styles.copy}> © 2024 Solvere Tech. Todos os direitos reservados. </Text>
 
@@ -70,6 +74,7 @@ const styles = StyleSheet.create({
       flex: 1,
       backgroundColor: '#FFA27F', //Altera a cor do background
       marginTop: 20,
+      justifyContent: 'space-between',
     },
     display1: {//Segunda linha de texto
       marginleft: 60, //Margem esquerda do texto
@@ -135,7 +140,6 @@ const styles = StyleSheet.create({
     },
     loginButton: {
       backgroundColor: '#FF6969',
-      
       borderWidth: 1, // Largura da borda
       padding: 15,
       borderRadius: 8,
@@ -162,10 +166,17 @@ const styles = StyleSheet.create({
       textAlign: 'center',
       marginVertical: 10, // Margem vertical para espaçamento
     },
+    imagemLogo:{
+      width: 90, //Largura
+      height: 90, //Altura
+      marginVertical: 20,
+      marginTop: 30, //Margem da figura no topo para elemento anterior, caixa de entrada
+      alignSelf: 'center',
+    },
     copy:{
-      marginVertical:30,
+      marginVertical:20,
       textAlign: 'center',
-      marginTop: 180,
+      marginTop: 40,
       fontSize: 15,
     },
     text:{

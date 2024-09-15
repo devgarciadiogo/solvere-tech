@@ -1,17 +1,26 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { View, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, Image, Modal } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-const Stack = createStackNavigator();
 
 const Cardapio = ({ navigation }) => {
+    const [modalVisible, setModalVisible] = useState(false);
+    const [modalContent, setModalContent] = useState('');
+
     React.useLayoutEffect(() => {
         navigation.setOptions({
             headerTitleAlign: 'left',
         });
     }, [navigation]);
+
+    // Função para abrir o modal e definir o conteúdo
+    const openModal = (content) => {
+        setModalContent(content);
+        setModalVisible(true);
+    };
+
 
 
     return (
@@ -88,19 +97,63 @@ const Cardapio = ({ navigation }) => {
                 </View>
             </TouchableOpacity>
 
+            <View style={styles.footerMenu}>
+                <TouchableOpacity style={styles.menuButton} onPress={() => openModal('info')}>
+                    <Text style={styles.menuText}>Info</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.menuButton} onPress={() => openModal('carrinho')}>
+                    <Text style={styles.menuText}>Carrinho</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.menuButton} onPress={() => openModal('perfil')}>
+                    <Text style={styles.menuText}>Perfil</Text>
+                </TouchableOpacity>
+            </View>
+
+            {/* Modal */}
+            <Modal
+                transparent={true}
+                animationType="slide"
+                visible={modalVisible}
+                onRequestClose={() => setModalVisible(false)}
+            >
+                <View style={styles.modalContainer}>
+                    <View style={styles.modalContent}>
+                        {/* Conteúdo do modal com base no botão clicado */}
+                        {modalContent === 'info' && (
+                            <Text style={styles.modalText}>Informações.</Text>
+                        )}
+                        {modalContent === 'carrinho' && (
+                            <Text style={styles.modalText}>Itens no seu carrinho.</Text>
+                        )}
+                        {modalContent === 'perfil' && (
+                            <Text style={styles.modalText}>Informações do seu perfil.</Text>
+                        )}
+                        
+                        {/* Botão de fechar */}
+                        <TouchableOpacity onPress={() => setModalVisible(false)} style={styles.closeButton}>
+                            <Text style={styles.closeButtonText}>Fechar</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </Modal>
+
             <StatusBar style="auto" />
+            
         </View>
 
     );
 }
+
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#FFA27F', // Altera a cor do background
         padding: 10,
-        alignItems:'center',
+        alignItems: 'center',
+        justifyContent: 'flex-start', // Garante que o conteúdo não sobreponha o menu
     },
+
     itemContainer:{
         flexDirection: 'row',
         alignItems: 'center',
@@ -150,7 +203,54 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: 'FF6347',
         marginLeft: 10,
-    }
+    },
+
+    footerMenu: {
+        position: 'absolute',
+        bottom: 0,
+        width: '100%',
+        backgroundColor: '#FF6347', 
+        flexDirection: 'row',
+        justifyContent: 'space-around', 
+        borderTopWidth: 1,
+        borderTopColor: '#FF0000',
+        paddingVertical: 15, 
+    },
+    menuButton: {
+        alignItems: 'center',
+        flex: 1, 
+    },
+    menuText: {
+        fontSize: 16,
+        color: '#FFF', 
+    },
+
+    modalContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)', // Fundo escuro translúcido
+    },
+    modalContent: {
+        backgroundColor: '#FFF',
+        borderRadius: 10,
+        padding: 20,
+        width: '80%',
+        alignItems: 'center',
+    },
+    modalText: {
+        fontSize: 18,
+        marginBottom: 20,
+    },
+    closeButton: {
+        backgroundColor: '#FF6347',
+        padding: 10,
+        borderRadius: 5,
+    },
+    closeButtonText: {
+        color: '#FFF',
+        fontSize: 16,
+    },
 });
 
 export default Cardapio;

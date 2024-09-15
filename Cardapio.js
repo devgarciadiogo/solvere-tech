@@ -99,12 +99,24 @@ const Cardapio = ({ navigation }) => {
 
             <View style={styles.footerMenu}>
                 <TouchableOpacity style={styles.menuButton} onPress={() => openModal('info')}>
+                    <Image
+                        source={require('./imagens/icons8-informações-50.png')}    
+                        style={styles.icon}
+                    />
                     <Text style={styles.menuText}>Info</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.menuButton} onPress={() => openModal('carrinho')}>
-                    <Text style={styles.menuText}>Carrinho</Text>
+                    <Image
+                        source={require('./imagens/icons8-carrinho-de-compras02-48.png')}  // Caminho da imagem
+                        style={styles.icon}  // Estilo da imagem
+                    />        
+                    <Text style={styles.menuText}>Carrinho</Text>           
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.menuButton} onPress={() => openModal('perfil')}>
+                    <Image 
+                        source={require('./imagens/icons8-male2-user-50.png')}
+                        style={styles.icon}
+                    />
                     <Text style={styles.menuText}>Perfil</Text>
                 </TouchableOpacity>
             </View>
@@ -237,6 +249,10 @@ const styles = StyleSheet.create({
         padding: 20,
         width: '80%',
         alignItems: 'center',
+    },
+    icon: {
+        width: 30,
+        height: 30,
     },
     modalText: {
         fontSize: 18,

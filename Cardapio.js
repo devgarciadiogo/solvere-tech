@@ -292,20 +292,20 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     phoneIcon: {
-        marginRight: 10, // Espaço entre o ícone e o número
+        marginRight: 10, 
     },
     imageGallery: {
         flexDirection: 'row',
-        flexWrap: 'wrap', // Permite quebrar para uma nova linha
+        flexWrap: 'wrap', 
         justifyContent: 'space-between',
         marginTop: 20,
-        width: '100%', // Garante que use todo o espaço disponível
+        width: '100%', 
     },
     galleryImage: {
-        width: '48%', // Ajusta a largura para duas colunas
-        height: 60,
+        width: '25%', 
+        height: 20,
         borderRadius: 5,
-        marginBottom: 10, // Adiciona um espaço entre as linhas
+        marginBottom: 10, 
     },
     icon: {
         width: 30,

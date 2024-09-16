@@ -3,6 +3,8 @@ import { StatusBar } from 'expo-status-bar';
 import { View, StyleSheet, Text, TouchableOpacity, Image, Modal } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { mdiSetCenter } from '@mdi/js';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
 const Cardapio = ({ navigation }) => {
@@ -20,6 +22,8 @@ const Cardapio = ({ navigation }) => {
         setModalContent(content);
         setModalVisible(true);
     };
+
+    const [titleTextInfo, setTitleText] = useState("Bistro de Lune");
 
 
 
@@ -122,6 +126,10 @@ const Cardapio = ({ navigation }) => {
             </View>
 
             {/* Modal */}
+
+            
+           
+            
             <Modal
                 transparent={true}
                 animationType="slide"
@@ -132,7 +140,35 @@ const Cardapio = ({ navigation }) => {
                     <View style={styles.modalContent}>
                         {/* Conteúdo do modal com base no botão clicado */}
                         {modalContent === 'info' && (
-                            <Text style={styles.modalText}>Informações.</Text>
+                            <>
+                            <Text style={styles.modalText}>{titleTextInfo}</Text>
+                            <Text style={styles.modalText}>Horário de Funcionamento: Terça à Domingo das 10h às 22h</Text>
+                            <View style={styles.phoneContainer}>
+                                <Icon name="phone-classic" size={20} color="#FFA27F" /> 
+                                <Text style={styles.modalText}> (21) 2724-5766</Text>
+                            </View>
+                            <Text style={styles.modalText}> Aceitamos as seguintes bandeiras: </Text>
+                            <View style={styles.imageGallery}>
+                            
+                        <Image 
+                            source={require('./imagens/alelo.png')}  
+                            style={styles.galleryImage}
+                        />
+                        <Image 
+                            source={require('./imagens/elo.png')} 
+                            style={styles.galleryImage}
+                        />
+                        <Image 
+                            source={require('./imagens/hipercard.png')} 
+                            style={styles.galleryImage}
+                        />
+                        <Image 
+                            source={require('./imagens/visa.png')}  
+                            style={styles.galleryImage}
+                        />
+                    </View>
+                        </>
+                            
                         )}
                         {modalContent === 'carrinho' && (
                             <Text style={styles.modalText}>Itens no seu carrinho.</Text>
@@ -250,6 +286,27 @@ const styles = StyleSheet.create({
         width: '80%',
         alignItems: 'center',
     },
+    phoneContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 20,
+    },
+    phoneIcon: {
+        marginRight: 10, // Espaço entre o ícone e o número
+    },
+    imageGallery: {
+        flexDirection: 'row',
+        flexWrap: 'wrap', // Permite quebrar para uma nova linha
+        justifyContent: 'space-between',
+        marginTop: 20,
+        width: '100%', // Garante que use todo o espaço disponível
+    },
+    galleryImage: {
+        width: '48%', // Ajusta a largura para duas colunas
+        height: 60,
+        borderRadius: 5,
+        marginBottom: 10, // Adiciona um espaço entre as linhas
+    },
     icon: {
         width: 30,
         height: 30,
@@ -257,6 +314,7 @@ const styles = StyleSheet.create({
     modalText: {
         fontSize: 18,
         marginBottom: 20,
+        alignItens: 'center',
     },
     closeButton: {
         backgroundColor: '#FF6347',

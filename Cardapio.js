@@ -301,6 +301,7 @@ const styles = StyleSheet.create({
     },
 
     footerMenu: {
+        position: 'absolute',
         bottom: 0,
         width: '100%',
         backgroundColor: '#FF6347', 

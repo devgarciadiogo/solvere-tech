@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { View, StyleSheet, Text, TouchableOpacity, Image, Modal } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, Image, Modal, ScrollView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { mdiSetCenter } from '@mdi/js';
@@ -25,12 +25,14 @@ const Cardapio = ({ navigation }) => {
 
     const [titleTextInfo, setTitleText] = useState("Bistro de Lune");
 
-
-
     return (
-
+       
         <View style={styles.container}>
             
+            <ScrollView contentContainerStyle={styles.scrollViewContent}>
+            <Text style={styles.mainTitle}>Pratos Principais</Text>
+
+
             <TouchableOpacity style={styles.itemContainer}>
                 <Image
                     style={styles.itemImage}
@@ -100,6 +102,40 @@ const Cardapio = ({ navigation }) => {
                     <Text style={styles.adicionarButtonText}>+</Text>
                 </View>
             </TouchableOpacity>
+             
+             
+             <Text style={styles.mainTitle}>Sobremesas</Text>
+            
+            {/* Seção de Sobremesas */}
+            <TouchableOpacity style={styles.itemContainer}>
+                <Image
+                    style={styles.itemImage}
+                    source={require('./imagens/ParisBrest.jpg')} // Substitua com a imagem desejada
+                />
+                <View style={styles.itemTextContainer}>
+                    <View style={styles.textAndPrice}>   
+                        <Text style={styles.itemText}>Paris-Brest</Text>
+                        <Text style={styles.itemPrice}>R$ 65,00</Text>
+                    </View>
+                    <Text style={styles.adicionarButtonText}>+</Text>
+                </View>
+            </TouchableOpacity>
+            
+            <TouchableOpacity style={styles.itemContainer}>
+                <Image
+                    style={styles.itemImage}
+                    source={require('./imagens/brulee.jpg')} // Substitua com a imagem desejada
+                />
+                <View style={styles.itemTextContainer}>
+                    <View style={styles.textAndPrice}>   
+                        <Text style={styles.itemText}>Crème Brûlée</Text>
+                        <Text style={styles.itemPrice}>R$ 55,60</Text>
+                    </View>
+                    <Text style={styles.adicionarButtonText}>+</Text>
+                </View>
+            </TouchableOpacity>
+
+            </ScrollView>
 
             <View style={styles.footerMenu}>
                 <TouchableOpacity style={styles.menuButton} onPress={() => openModal('info')}>
@@ -127,9 +163,6 @@ const Cardapio = ({ navigation }) => {
 
             {/* Modal */}
 
-            
-           
-            
             <Modal
                 transparent={true}
                 animationType="slide"
@@ -142,12 +175,12 @@ const Cardapio = ({ navigation }) => {
                         {modalContent === 'info' && (
                             <>
                             <Text style={styles.modalText}>{titleTextInfo}</Text>
-                            <Text style={styles.modalText}>Horário de Funcionamento: Terça à Domingo das 10h às 22h</Text>
+                            <Text style={styles.modalText}>Horário de Funcionamento: Terça à Domingo das 10h às 21h</Text>
                             <View style={styles.phoneContainer}>
-                                <Icon name="phone-classic" size={20} color="#FFA27F" /> 
+                                <Icon name="phone-classic" size={20} color="#FFA27F" style={styles.phoneIcon} /> 
                                 <Text style={styles.modalText}> (21) 2724-5766</Text>
                             </View>
-                            <Text style={styles.modalText}> Aceitamos as seguintes bandeiras: </Text>
+                            <Text style={styles.modalText}>Aceitamos as seguintes bandeiras: </Text>
                             <View style={styles.imageGallery}>
                             
                         <Image 
@@ -187,7 +220,9 @@ const Cardapio = ({ navigation }) => {
 
             <StatusBar style="auto" />
             
+
         </View>
+      
 
     );
 }
@@ -199,9 +234,21 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFA27F', // Altera a cor do background
         padding: 10,
         alignItems: 'center',
-        justifyContent: 'flex-start', // Garante que o conteúdo não sobreponha o menu
     },
-
+    scrollViewContent:{
+        flexGrow: 1, // Garante que o conteúdo da ScrollView preencha o espaço
+        padding: 10,
+    },
+    mainTitle:{
+        fontSize: 24,
+        fontWeight: 'bold',
+        marginVertical: 20,
+        textAlign: 'center'
+    },
+    pratoContainer:{
+        width: '100%',
+        alignItems: 'center',
+    },
     itemContainer:{
         flexDirection: 'row',
         alignItems: 'center',
@@ -249,12 +296,11 @@ const styles = StyleSheet.create({
     },
     itemPrice:{
         fontSize: 16,
-        color: 'FF6347',
+        color: '#FF6347',
         marginLeft: 10,
     },
 
     footerMenu: {
-        position: 'absolute',
         bottom: 0,
         width: '100%',
         backgroundColor: '#FF6347', 
@@ -272,7 +318,6 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: '#FFF', 
     },
-
     modalContainer: {
         flex: 1,
         justifyContent: 'center',
@@ -293,6 +338,7 @@ const styles = StyleSheet.create({
     },
     phoneIcon: {
         marginRight: 10, 
+        
     },
     imageGallery: {
         flexDirection: 'row',
@@ -314,12 +360,14 @@ const styles = StyleSheet.create({
     modalText: {
         fontSize: 18,
         marginBottom: 20,
+        marginTop: 15,
         alignItens: 'center',
     },
     closeButton: {
         backgroundColor: '#FF6347',
         padding: 10,
         borderRadius: 5,
+        marginTop: 15,
     },
     closeButtonText: {
         color: '#FFF',

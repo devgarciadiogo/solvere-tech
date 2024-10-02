@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
         marginLeft: 15, // Margem esquerda
         padding: 2, // Espaço interno
         paddingLeft: 10,
-        width: 350,
+        width: 370,
         placeholderTextColor: 'rgba(0, 0, 0, 0.5)',
         shadowColor: "#000",
         shadowOffset: { width: 0, height: 2 },

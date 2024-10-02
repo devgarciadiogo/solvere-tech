@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     email: { //Caixa de texto para email
       marginVertical: 10,
       marginTop: 2, //Margem da caixa de entrada para o label email
-      width: 350,  //Largura da caixa de entrada 
+      width: 370,  //Largura da caixa de entrada 
       height: 40, //Altura da caixa de entrada
       backgroundColor: '#FFF',
       borderEndWidth: 1,
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
       marginTop: 2, //Margem da primeira caixa de entrada para segunda
       padding: 2, //Espaço entra a entrada de dados e a borda
       paddingLeft: 10,
-      width: 350, //Aumente a largura da caixa de entrada
+      width: 370, //Aumente a largura da caixa de entrada
       placeholderTextColor: 'rgba(0, 0, 0, 0.5)',
       shadowColor: "#000",
       shadowOffset: { width: 0, height: 2 },

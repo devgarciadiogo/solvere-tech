@@ -7,12 +7,18 @@ export const CartProvider = ({ children }) => {
 
   const addToCart = (item) => {
     setCart((prevCart) => {
-      // Verifica se o item já existe no carrinho 
-      const exists = prevCart.some(cartItem => cartItem.id === item.id);
-      if (exists) {
-        return prevCart; // Não adiciona se já existe
+      // Verifica se o item já existe no carrinho
+      const existingItemIndex = prevCart.findIndex(cartItem => cartItem.id === item.id);
+
+      if (existingItemIndex !== -1) {
+        // Atualiza a quantidade se já existe
+        const updatedCart = [...prevCart];
+        updatedCart[existingItemIndex].quantity += 1;
+        return updatedCart;
       }
-      return [...prevCart, item];
+
+      // Adiciona o item com quantidade inicial 1 se não existe
+      return [...prevCart, { ...item, quantity: 1 }];
     });
   };
 
@@ -20,8 +26,16 @@ export const CartProvider = ({ children }) => {
     setCart((prevCart) => prevCart.filter(item => item.id !== itemId));
   };
 
+  const updateQuantity = (itemId, quantity) => {
+    setCart((prevCart) => {
+      return prevCart.map((item) =>
+        item.id === itemId ? { ...item, quantity: quantity } : item
+      );
+    });
+  };
+
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, updateQuantity }}>
       {children}
     </CartContext.Provider>
   );

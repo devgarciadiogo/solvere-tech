@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
       justifyContent: 'space-between',
     },
     display1: {//Segunda linha de texto
-      marginleft: 60, //Margem esquerda do texto
+      marginLeft: 60, //Margem esquerda do texto
       marginVertical: 20, // Adiciona mais espaço acima e abaixo do texto
       fontSize: 25,
       textAlign: 'center', //Centraliza o texto
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
       marginVertical: 20,
       marginTop: 5, //Margem da figura no topo para elemento anterior, caixa de entrada
       alignSelf: 'center',
-      marginleft: -10,
+      marginLeft: -10,
     },
     loginButton: {
       backgroundColor: '#FF6969',

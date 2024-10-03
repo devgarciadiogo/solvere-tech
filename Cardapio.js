@@ -202,7 +202,7 @@ const Cardapio = ({ navigation }) => {
   visible={modalVisible}
   onRequestClose={() => setModalVisible(false)}
 >
-<View style={styles.modalContainer}>
+  <View style={styles.modalContainer}>
     <View style={styles.modalContent}>
       {/* Conteúdo do modal com base no botão clicado */}
       {modalContent === "carrinho" ? (
@@ -226,6 +226,17 @@ const Cardapio = ({ navigation }) => {
             <Text style={styles.totalText}>
               Total: R$ {calculateTotal()}
             </Text>
+            
+            {/* Botão para ir para a tela de pagamento */}
+            <TouchableOpacity 
+              onPress={() => {
+                setModalVisible(false);
+                navigation.navigate('Pagamento'); // Navegando para a tela de pagamento
+              }}
+              style={styles.pagamentoButton}
+            >
+              <Text style={styles.pagamentoButtonText}>Ir para Pagamento</Text>
+            </TouchableOpacity>
           </>
         )
       ) : modalContent === "info" ? (
@@ -348,6 +359,18 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginTop: 10,
     textAlign: 'right', // Ajuste o alinhamento se necessário
+  },
+  pagamentoButton: {
+    backgroundColor: '#6EC207',
+    padding: 10,
+    borderRadius: 5,
+    marginTop: 10,
+    alignItems: 'center',
+  },
+  pagamentoButtonText: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
   footerMenu: {
     position: "absolute", // ou relative se preferir

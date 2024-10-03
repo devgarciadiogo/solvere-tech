@@ -21,7 +21,11 @@ const Cadastro = ({ navigation }) => {
     const [senha, setSenha] = useState("");
     
     const handleGravar = () => {
-        alert("...");
+    if (nome && telefone && email && senha) {
+        alert("Cadastro realizado com sucesso!");
+        } else {
+        alert("Por favor, preencha todos os campos.");
+        }
     };
     
     return (
@@ -139,8 +143,6 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
         elevation: 5,
-        borderColor: '#FF0000',
-        borderWidth: 1,
     },
     loginButtonText: {
         color: '#000',

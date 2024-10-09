@@ -4,8 +4,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Login from "./Login"; 
 import Cadastro from "./Cadastro";
 import Cardapio from "./Cardapio";
-import Pagamento from "./Pagamento"; // Atualiza para usar Pagamento.js
-import QRCodeScreen from "./pixTela"; // Importa a tela do QR Code
+import Pagamento from "./Pagamento"; // Verifique se o caminho está correto
+import pixTela from "./pixTela";
+import AcompanheSeuPedido from './AcompanheSeuPedido';
 
 const Stack = createStackNavigator();
 
@@ -30,8 +31,14 @@ const AppNavigator = () => {
         component={Pagamento} 
       />
       <Stack.Screen 
-        name="QRCodeScreen" 
-        component={QRCodeScreen} // Adiciona a tela do QR Code
+        name="pixTela" 
+        component={pixTela} // Adiciona a tela do QR Code
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen 
+        name="AcompanheSeuPedido" 
+        component={AcompanheSeuPedido} 
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );

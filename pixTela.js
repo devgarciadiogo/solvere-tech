@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-const QRCodeScreen = ({ navigation }) => {
+const pixTela = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>QR CODE PIX</Text>
@@ -58,4 +58,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default QRCodeScreen;
+export default pixTela;

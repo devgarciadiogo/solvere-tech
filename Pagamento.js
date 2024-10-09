@@ -14,14 +14,15 @@ const Pagamento = ({ navigation }) => {
     alert(`Método de pagamento escolhido: ${pagamentoMethod}`);
     
     if (pagamentoMethod === 'Pix') {
-        navigation.navigate('QRCodeScreen'); // Navega para a tela do QR Code
+        navigation.navigate('pixTela'); // Navega para a tela do QR Code
     }
 };
 
   const handleConfirmOrder = () => {
     alert(`Pedido confirmado!\nEndereço: ${rua}, ${numero}, ${bairro}, ${cidade}, ${complemento}\nMétodo de Pagamento: ${metodoPagamento}`);
-    navigation.navigate('PaginaDeEspera'); // Substitua pelo nome da sua tela de espera
+    navigation.navigate('AcompanheSeuPedido'); // Navega para a tela de acompanhamento do pedido
   };
+
 
   const handleSubmit = () => {
     alert(`Endereço enviado:\nRua: ${rua}\nNúmero: ${numero}\nBairro: ${bairro}\nCidade: ${cidade}\nComplemento: ${complemento}`);

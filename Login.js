@@ -21,9 +21,9 @@ export default function Login({ navigation }) {
         source={require('./imagens/Logotipo.png')}
       />
 
-      <Text style={styles.display1}>Faça seu Login!</Text>
+      <Text style={styles.display1}>FAÇA SEU LOGIN</Text>
 
-      <Text style={styles.display2}>Email</Text>
+      <Text style={styles.display2}>EMAIL</Text>
 
       <TextInput
         style={styles.email}
@@ -33,7 +33,7 @@ export default function Login({ navigation }) {
         placeholder='Insira seu email aqui!'
       />
 
-      <Text style={styles.display3}>Senha</Text>
+      <Text style={styles.display3}>SENHA</Text>
       <TextInput
         style={styles.senha}
         value={senha}
@@ -52,7 +52,7 @@ export default function Login({ navigation }) {
         style={styles.loginButton}
         onPress={() => navigation.navigate('Cardapio')} // Navega para a tela de cardápio
       >
-        <Text style={styles.loginButtonText}>Logar</Text>
+        <Text style={styles.loginButtonText}>LOGAR</Text>
       </TouchableOpacity>
 
       
@@ -77,20 +77,23 @@ const styles = StyleSheet.create({
       justifyContent: 'space-between',
     },
     display1: {//Segunda linha de texto
-      marginLeft: 60, //Margem esquerda do texto
+      marginLeft: 10, //Margem esquerda do texto
       marginVertical: 20, // Adiciona mais espaço acima e abaixo do texto
       fontSize: 25,
       textAlign: 'center', //Centraliza o texto
+      fontWeight: 'bold',
     },
     display2: { //Label para email
       margin: 5,
       marginLeft: 20, //Margem esquerda do texto
       fontSize: 22,
+      fontWeight: 'bold',
     },
     display3: { //Label para senha
       margin: 5,
       marginLeft: 20, //Margem esquerda do texto
       fontSize: 22,
+      fontWeight: 'bold',
     },
     email: { //Caixa de texto para email
       marginVertical: 10,
@@ -159,6 +162,7 @@ const styles = StyleSheet.create({
     loginButtonText: {
       color: '#000',
       fontSize: 16,
+      fontWeight: 'bold',
     },  
     cadastroText: {
       color: '#fff', // Cor do texto

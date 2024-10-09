@@ -33,7 +33,7 @@ const Cadastro = ({ navigation }) => {
 
             <Text style={styles.display1}>CADASTRO</Text>
 
-            <Text style={styles.label}>Nome Completo</Text>
+            <Text style={styles.label}>NOME COMPLETO</Text>
             <TextInput
                 style={styles.input}
                 value={nome}
@@ -41,7 +41,7 @@ const Cadastro = ({ navigation }) => {
                 placeholder='Digite seu nome completo aqui!'
             />
 
-            <Text style={styles.label}>Telefone</Text>
+            <Text style={styles.label}>TELEFONE</Text>
             <TextInput
                 style={styles.input}
                 value={telefone}
@@ -50,7 +50,7 @@ const Cadastro = ({ navigation }) => {
                 placeholder='Digite seu telefone aqui!'
             />
 
-            <Text style={styles.label}>Email</Text>
+            <Text style={styles.label}>EMAIL</Text>
             <TextInput
                 style={styles.input}
                 value={email}
@@ -59,7 +59,7 @@ const Cadastro = ({ navigation }) => {
                 placeholder='Digite seu email aqui!'
             />
 
-            <Text style={styles.label}>Senha</Text>
+            <Text style={styles.label}>SENHA</Text>
             <TextInput
                 style={styles.input}
                 value={senha}
@@ -71,7 +71,7 @@ const Cadastro = ({ navigation }) => {
                 style={styles.loginButton}
                 onPress={handleGravar}
             >
-                <Text style={styles.loginButtonText}>Enviar</Text>
+                <Text style={styles.loginButtonText}>ENVIAR</Text>
             </TouchableOpacity>
 
             <Image
@@ -99,9 +99,11 @@ const styles = StyleSheet.create({
         marginVertical: 25,
         fontSize: 25,
         textAlign: 'center', // Centraliza o texto
+        fontWeight: 'bold',
         color: '#000', // Cor do texto
     },
     label: {
+        fontWeight: 'bold',
         marginVertical: 10,
         marginLeft: 15,
         fontSize: 22,
@@ -147,6 +149,7 @@ const styles = StyleSheet.create({
     loginButtonText: {
         color: '#000',
         fontSize: 16,
+        fontWeight: 'bold',
     },
     imagemLogo:{
         width: 90, //Largura

@@ -48,7 +48,7 @@ const Cardapio = ({ navigation }) => {
     <View style={styles.container}>
       <ScrollView 
       contentContainerStyle={styles.scrollViewContent} style={ styles.scrollView } showsVerticalScrollIndicator={false}>
-        <Text style={styles.mainTitle}>Pratos Principais</Text>
+        <Text style={styles.mainTitle}>PRATOS PRINCIPAIS</Text>
 
         {/* Seção de Pratos Principais */}
         {[
@@ -95,7 +95,7 @@ const Cardapio = ({ navigation }) => {
           </TouchableOpacity>
         ))}
 
-        <Text style={styles.mainTitle}>Sobremesas</Text>
+        <Text style={styles.mainTitle}>SOBREMESAS</Text>
 
         {/* Seção de Sobremesas */}
         {[
@@ -136,7 +136,7 @@ const Cardapio = ({ navigation }) => {
           </TouchableOpacity>
         ))}
 
-             <Text style={styles.mainTitle}>Bebidas</Text>
+             <Text style={styles.mainTitle}>BEBIDAS</Text>
 
         {/* Seção de bebidas */}
         {[

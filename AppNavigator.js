@@ -5,6 +5,7 @@ import Login from "./Login";
 import Cadastro from "./Cadastro";
 import Cardapio from "./Cardapio";
 import Pagamento from "./Pagamento"; // Atualiza para usar Pagamento.js
+import QRCodeScreen from "./pixTela"; // Importa a tela do QR Code
 
 const Stack = createStackNavigator();
 
@@ -15,22 +16,22 @@ const AppNavigator = () => {
       <Stack.Screen 
         name="Login" 
         component={Login} 
-        options={{ headerShown: false }} // Opcional: esconde o cabeçalho
       />
       <Stack.Screen 
         name="Cadastro" 
         component={Cadastro} 
-        options={{ headerShown: false }} // Opcional: esconde o cabeçalho
       />
       <Stack.Screen 
         name="Cardapio" 
         component={Cardapio} 
-        options={{ headerShown: false }} // Opcional: esconde o cabeçalho
       />
       <Stack.Screen 
         name="Pagamento" 
         component={Pagamento} 
-        options={{ headerShown: false }} // Opcional: esconde o cabeçalho
+      />
+      <Stack.Screen 
+        name="QRCodeScreen" 
+        component={QRCodeScreen} // Adiciona a tela do QR Code
       />
     </Stack.Navigator>
   );

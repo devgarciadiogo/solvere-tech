@@ -4,7 +4,7 @@ import { View, TextInput, Button, StyleSheet, Text, TouchableOpacity } from 'rea
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Image } from 'react-native';
-
+import axios from 'axios';  // Importe o Axios aqui
 
 const Stack = createStackNavigator();
 
@@ -14,23 +14,46 @@ const Cadastro = ({ navigation }) => {
             headerTitleAlign: 'left',
         });
     }, [navigation]);
-    
+
     const [nome, setNome] = useState("");
     const [telefone, setTelefone] = useState("");
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
-    
-    const handleGravar = () => {
-    if (nome && telefone && email && senha) {
-        alert("Cadastro realizado com sucesso!");
+
+    const handleGravar = async () => {
+        if (nome && telefone && email && senha) {
+            const dados = {
+                nome: nome,
+                telefone: telefone,
+                email: email,
+                senha: senha
+            };
+
+            // Fazer a requisição POST para o backend usando Axios
+            try {
+                const response = await axios.post('http://192.168.1.4:3000/gravar', dados, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+                
+                // Verificar se a resposta contém a mensagem
+                if (response.data.message) {
+                    alert(response.data.message);
+                } else {
+                    alert('Erro ao cadastrar, tente novamente.');
+                }
+            } catch (error) {
+                console.error('Erro na requisição:', error.response ? error.response.data : error.message);
+                alert('Erro na requisição. Tente novamente mais tarde.');
+            }
         } else {
-        alert("Por favor, preencha todos os campos.");
+            alert("Por favor, preencha todos os campos.");
         }
     };
-    
+
     return (
         <View style={styles.container}>
-
             <Text style={styles.display1}>CADASTRO</Text>
 
             <Text style={styles.label}>NOME COMPLETO</Text>
@@ -67,6 +90,7 @@ const Cadastro = ({ navigation }) => {
                 secureTextEntry={true}
                 placeholder='Digite sua senha aqui!'
             />
+
             <TouchableOpacity
                 style={styles.loginButton}
                 onPress={handleGravar}
@@ -80,12 +104,11 @@ const Cadastro = ({ navigation }) => {
                 source={require('./imagens/SOLVERE TECH.png')}
             />
 
-            
-            <Text style = {styles.copy}> © 2024 Solvere Tech. Todos os direitos reservados.</Text>
+            <Text style={styles.copy}>© 2024 Solvere Tech. Todos os direitos reservados.</Text>
             <StatusBar style="auto" />
         </View>
     );
-}
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -151,15 +174,15 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
     },
-    imagemLogo:{
-        width: 90, //Largura
-        height: 90, //Altura
+    imagemLogo: {
+        width: 90, // Largura
+        height: 90, // Altura
         marginVertical: 20,
-        marginTop: 30, //Margem da figura no topo para elemento anterior, caixa de entrada
+        marginTop: 30, // Margem da figura no topo para elemento anterior, caixa de entrada
         alignSelf: 'center',
     },
-    copy:{
-        marginVertical:20,
+    copy: {
+        marginVertical: 20,
         textAlign: 'center',
         fontSize: 15,
     },

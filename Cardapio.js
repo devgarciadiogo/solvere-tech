@@ -1,16 +1,24 @@
 import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import {View,StyleSheet,Text,TouchableOpacity,Image,Modal,ScrollView, FlatList} from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  Image,
+  Modal,
+  ScrollView,
+  FlatList,
+} from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import { useCart } from './CartContext'; // Altere para o caminho correto
-
+import { useCart } from "./CartContext"; // Altere para o caminho correto
 
 const Cardapio = ({ navigation }) => {
-  const { cart, addToCart, removeFromCart } = useCart(); 
+  const { cart, addToCart, removeFromCart } = useCart();
   console.log("Conteúdo do carrinho:", cart); // Para depuração
   const [modalVisible, setModalVisible] = useState(false);
   const [modalContent, setModalContent] = useState("");
-    
+
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerTitleAlign: "left",
@@ -34,20 +42,22 @@ const Cardapio = ({ navigation }) => {
 
   const calculateTotal = () => {
     const total = cart.reduce((total, item) => {
-        // Converte o preço para um número, removendo "R$ " e substituindo "," por "."
-        const price = parseFloat(item.price.replace("R$ ", "").replace(",", "."));
-        console.log(`Item: ${item.name}, Preço: ${price}`); // Para verificar se o preço está correto
-        return total + (isNaN(price) ? 0 : price); // Evita NaN
+      // Converte o preço para um número, removendo "R$ " e substituindo "," por "."
+      const price = parseFloat(item.price.replace("R$ ", "").replace(",", "."));
+      console.log(`Item: ${item.name}, Preço: ${price}`); // Para verificar se o preço está correto
+      return total + (isNaN(price) ? 0 : price); // Evita NaN
     }, 0);
     console.log("Total antes do fix:", total); // Para verificar o total antes de arredondar
     return total.toFixed(2);
-};
+  };
 
-  
   return (
     <View style={styles.container}>
-      <ScrollView 
-      contentContainerStyle={styles.scrollViewContent} style={ styles.scrollView } showsVerticalScrollIndicator={false}>
+      <ScrollView
+        contentContainerStyle={styles.scrollViewContent}
+        style={styles.scrollView}
+        showsVerticalScrollIndicator={false}
+      >
         <Text style={styles.mainTitle}>PRATOS PRINCIPAIS</Text>
 
         {/* Seção de Pratos Principais */}
@@ -70,20 +80,24 @@ const Cardapio = ({ navigation }) => {
             price: "R$ 74,00",
             image: require("./imagens/couq.jpg"),
           },
-          { 
+          {
             id: 4,
             name: "Steak Frites",
             price: "R$ 81,90",
             image: require("./imagens/steakfrites.jpg"),
           },
-          { 
+          {
             id: 5,
             name: "Confit de Canard",
             price: "R$ 120,00",
             image: require("./imagens/canard.jpg"),
           },
         ].map((item, index) => (
-          <TouchableOpacity style={styles.itemContainer} key={item.id} onPress={() => handleAddToCart(item)}>
+          <TouchableOpacity
+            style={styles.itemContainer}
+            key={item.id}
+            onPress={() => handleAddToCart(item)}
+          >
             <Image style={styles.itemImage} source={item.image} />
             <View style={styles.itemTextContainer}>
               <View style={styles.textAndPrice}>
@@ -124,7 +138,11 @@ const Cardapio = ({ navigation }) => {
             image: require("./imagens/tartetatin.webp"),
           },
         ].map((item, index) => (
-          <TouchableOpacity style={styles.itemContainer} key={item.id} onPress={() => handleAddToCart(item)}>
+          <TouchableOpacity
+            style={styles.itemContainer}
+            key={item.id}
+            onPress={() => handleAddToCart(item)}
+          >
             <Image style={styles.itemImage} source={item.image} />
             <View style={styles.itemTextContainer}>
               <View style={styles.textAndPrice}>
@@ -136,7 +154,7 @@ const Cardapio = ({ navigation }) => {
           </TouchableOpacity>
         ))}
 
-             <Text style={styles.mainTitle}>BEBIDAS</Text>
+        <Text style={styles.mainTitle}>BEBIDAS</Text>
 
         {/* Seção de bebidas */}
         {[
@@ -165,7 +183,11 @@ const Cardapio = ({ navigation }) => {
             image: require("./imagens/chandon.jpg"),
           },
         ].map((item, index) => (
-          <TouchableOpacity style={styles.itemContainer} key={item.id} onPress={() => handleAddToCart(item)}>
+          <TouchableOpacity
+            style={styles.itemContainer}
+            key={item.id}
+            onPress={() => handleAddToCart(item)}
+          >
             <Image style={styles.itemImage} source={item.image} />
             <View style={styles.itemTextContainer}>
               <View style={styles.textAndPrice}>
@@ -179,95 +201,141 @@ const Cardapio = ({ navigation }) => {
       </ScrollView>
 
       <View style={styles.footerMenu}>
-        <TouchableOpacity style={styles.menuButton} onPress={() => openModal("info")}>
-          <Image source={require("./imagens/icons8-informações-50.png")} style={styles.icon} />
+        <TouchableOpacity
+          style={styles.menuButton}
+          onPress={() => openModal("info")}
+        >
+          <Image
+            source={require("./imagens/icons8-informações-50.png")}
+            style={styles.icon}
+          />
           <Text style={styles.menuText}>Info</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.menuButton} onPress={() =>{ 
-          setModalContent("carrinho");
-          setModalVisible(true);
-          }}>
-          <Image source={require("./imagens/icons8-carrinho-de-compras02-48.png")} style={styles.icon} />
+
+        <TouchableOpacity
+          style={styles.menuButton}
+          onPress={() => {
+            setModalContent("carrinho");
+            setModalVisible(true);
+          }}
+        >
+          <Image
+            source={require("./imagens/icons8-carrinho-de-compras02-48.png")}
+            style={styles.icon}
+          />
           <Text style={styles.menuText}>Carrinho</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.menuButton} onPress={() => openModal("perfil")}>
-          <Image source={require("./imagens/icons8-male2-user-50.png")} style={styles.icon} />
+
+        <TouchableOpacity
+          style={styles.menuButton}
+          onPress={() => navigation.navigate("Perfil")}
+        >
+          <Image
+            source={require("./imagens/icons8-male2-user-50.png")}
+            style={styles.icon}
+          />
           <Text style={styles.menuText}>Perfil</Text>
         </TouchableOpacity>
       </View>
-{/* Modal */}
-<Modal
-  transparent={true}
-  animationType="slide"
-  visible={modalVisible}
-  onRequestClose={() => setModalVisible(false)}
->
-  <View style={styles.modalContainer}>
-    <View style={styles.modalContent}>
-      {/* Conteúdo do modal com base no botão clicado */}
-      {modalContent === "carrinho" ? (
-        cart.length === 0 ? (
-          <Text style={styles.modalText}>Seu carrinho está vazio.</Text>
-        ) : (
-          <>
-            <FlatList
-              data={cart}
-              renderItem={({ item }) => (
-                <View style={styles.itemContainer}>
-                  <Text style={styles.itemText}>{item.name}</Text>
-                  <Text style={styles.itemPrice}>{item.price}</Text>
-                  <TouchableOpacity onPress={() => removeFromCart(item.id)}>
-                    <Text style={styles.removeButton}>Remover</Text>
-                  </TouchableOpacity>
-                </View>
-              )}
-              keyExtractor={(item) => item.id.toString()}
-            />
-            <Text style={styles.totalText}>
-              Total: R$ {calculateTotal()}
-            </Text>
-            
-            {/* Botão para ir para a tela de pagamento */}
-            <TouchableOpacity 
-              onPress={() => {
-                setModalVisible(false);
-                navigation.navigate('Pagamento'); // Navegando para a tela de pagamento
-              }}
-              style={styles.pagamentoButton}
-            >
-              <Text style={styles.pagamentoButtonText}>Ir para Pagamento</Text>
-            </TouchableOpacity>
-          </>
-        )
-      ) : modalContent === "info" ? (
-        <>
-          <Text style={styles.modalText}>{titleTextInfo}</Text>
-          <Text style={styles.modalText}>
-            Horário de Funcionamento: Terça à Domingo das 10h às 21h
-          </Text>
-          <View style={styles.phoneContainer}>
-            <Icon name="phone-classic" size={20} color="#FFA27F" style={styles.phoneIcon} />
-            <Text style={styles.modalText}> (21) 2724-5766</Text>
-          </View>
-          <Text style={styles.modalText}>Aceitamos as seguintes bandeiras:</Text>
-          <View style={styles.imageGallery}>
-            <Image source={require("./imagens/alelo.png")} style={styles.galleryImage} />
-            <Image source={require("./imagens/elo.png")} style={styles.galleryImage} />
-            <Image source={require("./imagens/hipercard.png")} style={styles.galleryImage} />
-            <Image source={require("./imagens/visa.png")} style={styles.galleryImage} />
-          </View>
-        </>
-      ) : modalContent === "perfil" ? (
-        <Text style={styles.modalText}>Informações do seu perfil.</Text>
-      ) : null}
+      {/* Modal */}
+      <Modal
+        transparent={true}
+        animationType="slide"
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            {/* Conteúdo do modal com base no botão clicado */}
+            {modalContent === "carrinho" ? (
+              cart.length === 0 ? (
+                <Text style={styles.modalText}>Seu carrinho está vazio.</Text>
+              ) : (
+                <>
+                  <FlatList
+                    data={cart}
+                    renderItem={({ item }) => (
+                      <View style={styles.itemContainer}>
+                        <Text style={styles.itemText}>{item.name}</Text>
+                        <Text style={styles.itemPrice}>{item.price}</Text>
+                        <TouchableOpacity
+                          onPress={() => removeFromCart(item.id)}
+                        >
+                          <Text style={styles.removeButton}>Remover</Text>
+                        </TouchableOpacity>
+                      </View>
+                    )}
+                    keyExtractor={(item) => item.id.toString()}
+                  />
+                  <Text style={styles.totalText}>
+                    Total: R$ {calculateTotal()}
+                  </Text>
 
-      {/* Botão de fechar */}
-      <TouchableOpacity onPress={() => setModalVisible(false)} style={styles.closeButton}>
-        <Text style={styles.closeButtonText}>Fechar</Text>
-      </TouchableOpacity>
-    </View>
-  </View>
-</Modal>
+                  {/* Botão para ir para a tela de pagamento */}
+                  <TouchableOpacity
+                    onPress={() => {
+                      setModalVisible(false);
+                      navigation.navigate("Pagamento"); // Navegando para a tela de pagamento
+                    }}
+                    style={styles.pagamentoButton}
+                  >
+                    <Text style={styles.pagamentoButtonText}>
+                      Ir para Pagamento
+                    </Text>
+                  </TouchableOpacity>
+                </>
+              )
+            ) : modalContent === "info" ? (
+              <>
+                <Text style={styles.modalText}>{titleTextInfo}</Text>
+                <Text style={styles.modalText}>
+                  Horário de Funcionamento: Terça à Domingo das 10h às 21h
+                </Text>
+                <View style={styles.phoneContainer}>
+                  <Icon
+                    name="phone-classic"
+                    size={20}
+                    color="#FFA27F"
+                    style={styles.phoneIcon}
+                  />
+                  <Text style={styles.modalText}> (21) 2724-5766</Text>
+                </View>
+                <Text style={styles.modalText}>
+                  Aceitamos as seguintes bandeiras:
+                </Text>
+                <View style={styles.imageGallery}>
+                  <Image
+                    source={require("./imagens/alelo.png")}
+                    style={styles.galleryImage}
+                  />
+                  <Image
+                    source={require("./imagens/elo.png")}
+                    style={styles.galleryImage}
+                  />
+                  <Image
+                    source={require("./imagens/hipercard.png")}
+                    style={styles.galleryImage}
+                  />
+                  <Image
+                    source={require("./imagens/visa.png")}
+                    style={styles.galleryImage}
+                  />
+                </View>
+              </>
+            ) : modalContent === "perfil" ? (
+              <Text style={styles.modalText}>Informações do seu perfil.</Text>
+            ) : null}
+
+            {/* Botão de fechar */}
+            <TouchableOpacity
+              onPress={() => setModalVisible(false)}
+              style={styles.closeButton}
+            >
+              <Text style={styles.closeButtonText}>Fechar</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
 
       <StatusBar style="auto" />
     </View>
@@ -348,7 +416,7 @@ const styles = StyleSheet.create({
     flex: 1, // Faz o texto ocupar o espaço restante
   },
   itemPrice: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
     fontSize: 16,
     color: "#FF6347",
     marginRight: 20, // Adiciona espaço acima do preço
@@ -356,21 +424,21 @@ const styles = StyleSheet.create({
   },
   totalText: {
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginTop: 10,
-    textAlign: 'right', // Ajuste o alinhamento se necessário
+    textAlign: "right", // Ajuste o alinhamento se necessário
   },
   pagamentoButton: {
-    backgroundColor: '#6EC207',
+    backgroundColor: "#6EC207",
     padding: 10,
     borderRadius: 5,
     marginTop: 10,
-    alignItems: 'center',
+    alignItems: "center",
   },
   pagamentoButtonText: {
-    color: '#FFFFFF',
+    color: "#FFFFFF",
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   footerMenu: {
     position: "absolute", // ou relative se preferir
@@ -445,7 +513,7 @@ const styles = StyleSheet.create({
   closeButtonText: {
     color: "#FFF",
     fontSize: 16,
-    textAlign: 'center',
+    textAlign: "center",
   },
 });
 

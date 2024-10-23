@@ -18,7 +18,12 @@ const Pagamento = ({ navigation }) => {
 
   const handlePayment = (pagamentoMethod) => {
     setMetodoPagamento(pagamentoMethod);
-    alert(`Método de pagamento escolhido: ${pagamentoMethod}`);
+    if (pagamentoMethod === "Pix") {
+      // Navega para a tela do QR Code
+      navigation.navigate("pixTela");
+    } else {
+      alert(`Método de pagamento escolhido: ${pagamentoMethod}`);
+    }
   };
 
   const handleConfirmOrder = () => {
@@ -33,14 +38,8 @@ const Pagamento = ({ navigation }) => {
       `Pedido confirmado!\nEndereço: ${rua}, ${numero}, ${bairro}, ${cidade}, ${complemento}\nMétodo de Pagamento: ${metodoPagamento}`
     );
 
-    // Navega para a tela do QR Code se o método de pagamento for Pix
-    if (metodoPagamento === "Pix") {
-      console.log("Navegando para a tela do QR Code");
-      navigation.navigate("PixTela"); // Altere para "PixTela"
-    } else {
-      console.log("Navegando para a tela de acompanhamento do pedido");
-      navigation.navigate("AcompanheSeuPedido");
-    }
+    // Navega para a tela de acompanhamento do pedido
+    navigation.navigate("AcompanheSeuPedido");
   };
 
   return (

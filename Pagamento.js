@@ -1,31 +1,46 @@
-import React, { useState } from 'react';
-import { Image, View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
+import React, { useState } from "react";
+import {
+  Image,
+  View,
+  Text,
+  TouchableOpacity,
+  TextInput,
+  StyleSheet,
+} from "react-native";
 
 const Pagamento = ({ navigation }) => {
-  const [rua, setRua] = useState('');
-  const [numero, setNumero] = useState('');
-  const [bairro, setBairro] = useState('');
-  const [cidade, setCidade] = useState('');
-  const [complemento, setComplemento] = useState('');
-  const [metodoPagamento, setMetodoPagamento] = useState(''); // Estado para armazenar o método de pagamento
+  const [rua, setRua] = useState("");
+  const [numero, setNumero] = useState("");
+  const [bairro, setBairro] = useState("");
+  const [cidade, setCidade] = useState("");
+  const [complemento, setComplemento] = useState("");
+  const [metodoPagamento, setMetodoPagamento] = useState("");
 
   const handlePayment = (pagamentoMethod) => {
-    setMetodoPagamento(pagamentoMethod); // Armazena o método de pagamento escolhido
+    setMetodoPagamento(pagamentoMethod);
     alert(`Método de pagamento escolhido: ${pagamentoMethod}`);
-    
-    if (pagamentoMethod === 'Pix') {
-        navigation.navigate('pixTela'); // Navega para a tela do QR Code
-    }
-};
-
-  const handleConfirmOrder = () => {
-    alert(`Pedido confirmado!\nEndereço: ${rua}, ${numero}, ${bairro}, ${cidade}, ${complemento}\nMétodo de Pagamento: ${metodoPagamento}`);
-    navigation.navigate('AcompanheSeuPedido'); // Navega para a tela de acompanhamento do pedido
   };
 
+  const handleConfirmOrder = () => {
+    if (!rua || !numero || !bairro || !cidade || !metodoPagamento) {
+      alert(
+        "Por favor, preencha todos os campos e escolha um método de pagamento."
+      );
+      return;
+    }
 
-  const handleSubmit = () => {
-    alert(`Endereço enviado:\nRua: ${rua}\nNúmero: ${numero}\nBairro: ${bairro}\nCidade: ${cidade}\nComplemento: ${complemento}`);
+    alert(
+      `Pedido confirmado!\nEndereço: ${rua}, ${numero}, ${bairro}, ${cidade}, ${complemento}\nMétodo de Pagamento: ${metodoPagamento}`
+    );
+
+    // Navega para a tela do QR Code se o método de pagamento for Pix
+    if (metodoPagamento === "Pix") {
+      console.log("Navegando para a tela do QR Code");
+      navigation.navigate("PixTela"); // Altere para "PixTela"
+    } else {
+      console.log("Navegando para a tela de acompanhamento do pedido");
+      navigation.navigate("AcompanheSeuPedido");
+    }
   };
 
   return (
@@ -64,23 +79,31 @@ const Pagamento = ({ navigation }) => {
         onChangeText={setComplemento}
       />
 
-      <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
-        <Text style={styles.buttonText}>ENVIAR ENDEREÇO</Text>
-      </TouchableOpacity>
-
       <Text style={styles.title}>ESCOLHA A FORMA DE PAGAMENTO</Text>
 
-      <TouchableOpacity style={styles.button} onPress={() => handlePayment('Dinheiro')}>
-        <Image source={require('./imagens/dinheiro.png')} style={styles.image} />
-        <Text style={[styles.buttonText, { marginLeft: 15 }]}>DINHEIRO</Text> {/* Adicionado marginLeft aqui */}
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => handlePayment("Dinheiro")}
+      >
+        <Image
+          source={require("./imagens/dinheiro.png")}
+          style={styles.image}
+        />
+        <Text style={[styles.buttonText, { marginLeft: 15 }]}>DINHEIRO</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button} onPress={() => handlePayment('Pix')}>
-        <Image source={require('./imagens/pix.png')} style={styles.image} />
-        <Text style={[styles.buttonText, { marginLeft: 15 }]}>PIX</Text> {/* Adicionado marginLeft aqui */}
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => handlePayment("Pix")}
+      >
+        <Image source={require("./imagens/pix.png")} style={styles.image} />
+        <Text style={[styles.buttonText, { marginLeft: 15 }]}>PIX</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.confirmButton} onPress={handleConfirmOrder}>
+      <TouchableOpacity
+        style={styles.confirmButton}
+        onPress={handleConfirmOrder}
+      >
         <Text style={styles.buttonText}>CONFIRMAR PEDIDO</Text>
       </TouchableOpacity>
     </View>
@@ -90,72 +113,63 @@ const Pagamento = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFA27F',
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: "#FFA27F",
+    justifyContent: "center",
+    alignItems: "center",
     padding: 20,
   },
   title: {
     fontSize: 28,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 15,
     marginTop: 20,
-    textAlign: 'center',
+    textAlign: "center",
   },
   input: {
     height: 50,
-    borderColor: '#FF6969',
-    borderWidth: 2, // Aumentar a largura da borda
-    borderRadius: 10, // Borda arredondada
+    borderColor: "#FF6969",
+    borderWidth: 2,
+    borderRadius: 10,
     paddingHorizontal: 15,
     marginBottom: 15,
-    width: '100%',
-    backgroundColor: '#FFFFFF', // Fundo branco para os inputs
+    width: "100%",
+    backgroundColor: "#FFFFFF",
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 3,
-    elevation: 2, // Sombras para Android
+    elevation: 2,
   },
   button: {
-    backgroundColor: '#6EC207',
+    backgroundColor: "#6EC207",
     borderWidth: 1,
-    borderColor: '#0056b3',
+    borderColor: "#0056b3",
     padding: 15,
     borderRadius: 10,
-    alignItems: 'center',
+    alignItems: "center",
     marginVertical: 10,
-    width: '100%',
-    alignSelf: 'center',
+    width: "100%",
+    alignSelf: "center",
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
-    flexDirection: 'row',
-  },
-  submitButton: {
-    backgroundColor: '#FF6969',
-    padding: 15,
-    borderRadius: 10,
-    alignItems: 'center',
-    marginVertical: 10,
-    width: '70%',
-    alignSelf: 'center',
+    flexDirection: "row",
   },
   confirmButton: {
-    backgroundColor: '#FF6969', // Cor do botão de confirmar pedido
+    backgroundColor: "#FF6969",
     padding: 15,
     borderRadius: 10,
-    alignItems: 'center',
+    alignItems: "center",
     marginVertical: 10,
-    width: '70%',
-    alignSelf: 'center',
+    width: "70%",
+    alignSelf: "center",
   },
   buttonText: {
-    color: '#FFFFFF',
+    color: "#FFFFFF",
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   image: {
     width: 24,

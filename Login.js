@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import {
-  StyleSheet,
   Text,
   View,
   TextInput,
   Image,
   TouchableOpacity,
   Alert,
+  StyleSheet,
 } from "react-native";
 import axios from "axios";
-import AsyncStorage from "@react-native-async-storage/async-storage"; // Importa o AsyncStorage
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Login({ navigation }) {
   React.useLayoutEffect(() => {
     navigation.setOptions({
-      headerShown: false, // Esconde o cabeçalho da tela
+      headerShown: false,
     });
   }, [navigation]);
 
@@ -28,7 +28,7 @@ export default function Login({ navigation }) {
       return;
     }
     try {
-      const response = await axios.post("http://192.168.0.92:3000/login", {
+      const response = await axios.post("http://192.168.0.129:3000/login", {
         email,
         senha,
       });
@@ -37,31 +37,39 @@ export default function Login({ navigation }) {
 
       if (response.data.success) {
         Alert.alert("Login bem-sucedido!", response.data.message);
-
-        // Verifique se o userId está definido
         if (response.data.userId) {
-          try {
-            // Armazena o userId no AsyncStorage como string
-            await AsyncStorage.setItem("userId", String(response.data.userId));
-            console.log("User ID saved:", response.data.userId);
-          } catch (storageError) {
-            console.error("Erro ao salvar o userId:", storageError);
-          }
+          await AsyncStorage.setItem("userId", String(response.data.userId));
+          console.log("User ID saved:", response.data.userId);
         } else {
           console.warn("userId não encontrado na resposta");
         }
-
-        // Navega para a tela de cardápio
         navigation.navigate("Cardapio");
       } else {
         Alert.alert("Erro", response.data.message);
       }
     } catch (error) {
       console.error("Erro na requisição:", error);
-      Alert.alert(
-        "Erro",
-        "Não foi possível realizar o login. Tente novamente mais tarde."
-      );
+
+      // Verifique a estrutura do erro
+      if (error.response) {
+        console.log("Status:", error.response.status);
+        console.log("Dados do erro:", error.response.data);
+      }
+
+      const errorMessage = error.response?.data?.message || "Erro desconhecido";
+
+      // Alert para login não encontrado
+      if (errorMessage === "Usuário não encontrado") {
+        Alert.alert(
+          "Erro",
+          "Login não encontrado. Por favor, faça seu cadastro."
+        );
+      } else {
+        Alert.alert(
+          "Erro",
+          "Não foi possível realizar o login. Tente novamente mais tarde."
+        );
+      }
     }
   };
 
@@ -76,7 +84,6 @@ export default function Login({ navigation }) {
       <Text style={styles.display1}>FAÇA SEU LOGIN</Text>
 
       <Text style={styles.display2}>EMAIL</Text>
-
       <TextInput
         style={styles.email}
         value={email}
@@ -119,101 +126,72 @@ export default function Login({ navigation }) {
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FFA27F", //Altera a cor do background
-    marginTop: 20,
+    backgroundColor: "#FFA27F",
     justifyContent: "space-between",
+    paddingTop: 20,
   },
   display1: {
-    //Segunda linha de texto
-    marginLeft: 10, //Margem esquerda do texto
-    marginVertical: 20, // Adiciona mais espaço acima e abaixo do texto
+    marginVertical: 20,
     fontSize: 25,
-    textAlign: "center", //Centraliza o texto
+    textAlign: "center",
     fontWeight: "bold",
   },
   display2: {
-    //Label para email
     margin: 5,
-    marginLeft: 20, //Margem esquerda do texto
+    marginLeft: 20,
     fontSize: 22,
     fontWeight: "bold",
   },
   display3: {
-    //Label para senha
     margin: 5,
-    marginLeft: 20, //Margem esquerda do texto
+    marginLeft: 20,
     fontSize: 22,
     fontWeight: "bold",
   },
   email: {
-    //Caixa de texto para email
     marginVertical: 10,
-    marginTop: 2, //Margem da caixa de entrada para o label email
-    width: 370, //Largura da caixa de entrada
-    height: 40, //Altura da caixa de entrada
+    marginLeft: 20,
+    width: 370,
+    height: 40,
     backgroundColor: "#FFF",
-    borderEndWidth: 1,
-    marginLeft: 20, //Margem esquerda do texto
-    padding: 2, //Espaço para a entrada de dados e a borda
-    paddingLeft: 10,
+    padding: 10,
     placeholderTextColor: "rgba(0, 0, 0, 0.5)",
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-    borderColor: "#FF0000", // Cor da borda
-    borderWidth: 1, // Largura da borda
+    borderColor: "#FF0000",
+    borderWidth: 1,
+    borderRadius: 5,
   },
   senha: {
-    //Caixa de texto para senha
     marginVertical: 10,
-    backgroundColor: "#FFF",
+    marginLeft: 20,
+    width: 370,
     height: 40,
-    borderEndWidth: 1,
-    marginLeft: 20, //Margem esquerda do texto
-    marginTop: 2, //Margem da primeira caixa de entrada para segunda
-    padding: 2, //Espaço entra a entrada de dados e a borda
-    paddingLeft: 10,
-    width: 370, //Aumente a largura da caixa de entrada
+    backgroundColor: "#FFF",
+    padding: 10,
     placeholderTextColor: "rgba(0, 0, 0, 0.5)",
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-    borderColor: "#FF0000", // Cor da borda
-    borderWidth: 1, // Largura da borda
+    borderColor: "#FF0000",
+    borderWidth: 1,
+    borderRadius: 5,
   },
   imagem: {
-    // Configurações para a imagem
-    width: 200, //Largura
-    height: 200, //Altura
+    width: 200,
+    height: 200,
     marginVertical: 20,
-    marginTop: 5, //Margem da figura no topo para elemento anterior, caixa de entrada
     alignSelf: "center",
-    marginLeft: -10,
   },
   loginButton: {
     backgroundColor: "#FF6969",
-    borderWidth: 1, // Largura da borda
     padding: 15,
     borderRadius: 8,
     alignItems: "center",
     marginVertical: 20,
-    marginTop: 20,
     width: 200,
     alignSelf: "center",
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-    borderColor: "#FF0000", // Cor da borda
-    borderWidth: 1, // Largura da borda
+    borderColor: "#FF0000",
+    borderWidth: 1,
   },
   loginButtonText: {
     color: "#000",
@@ -221,27 +199,19 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   cadastroText: {
-    color: "#fff", // Cor do texto
+    color: "#fff",
     fontSize: 14,
     textAlign: "center",
-    marginVertical: 10, // Margem vertical para espaçamento
+    marginVertical: 10,
   },
   imagemLogo: {
-    width: 90, //Largura
-    height: 90, //Altura
-    marginVertical: 20,
-    marginTop: 30, //Margem da figura no topo para elemento anterior, caixa de entrada
+    width: 90,
+    height: 90,
     alignSelf: "center",
   },
   copy: {
     marginVertical: 20,
     textAlign: "center",
-    marginTop: 40,
     fontSize: 15,
-  },
-  text: {
-    margin: 5,
-    marginBottom: 20,
-    fontSize: 14,
   },
 });

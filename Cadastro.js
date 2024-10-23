@@ -39,7 +39,7 @@ const Cadastro = ({ navigation }) => {
       // Fazer a requisição POST para o backend usando Axios
       try {
         const response = await axios.post(
-          "http://192.168.0.92:3000/gravar",
+          "http://192.168.0.129:3000/gravar",
           dados,
           {
             headers: {
